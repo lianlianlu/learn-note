@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>this</title>
+</head>
+<body>
+  <script>
+  //第一种情况：构造函数
+    function Foo(){
+      this.name = "lianlian";
+      this.age = 18;
+     // console.log(this);  //仅仅代表函数自己 Foo(){name:"lianian"; age: 18}
+    }
+    //var f1 = new Foo();
+    //document.write(f1.name);
+    //document.write(f1.age);
+
+    //如果是调用整个函数，而不是new对象的话
+      Foo();  //Window {parent: Window, postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, …}
+    //因为这是window.Foo(); window调用的这个函数，所有this指向调用函数的对象
+
+
+    //第一种情况：作为对象的属性进行调用
+    var a = 20;
+    var obj = {
+      a: 10,
+      fn: function(name) {
+        console.log(this);  //{a: 10, fn: ƒ}    this指向obj
+        console.log(this.a);  //10
+        console.log(a);  //20
+        console.log(name); //hahhahah
+      }
+    }
+
+    obj.fn('hahhahah');
+
+    //如果fn不是作为obj的一个属性调用，只是作为一个函数来调用呢？
+    var a = 30;
+    var fn1 = obj.fn;
+    fn1('lianian');   //结果依次是： window  lianlian  undefined     此时执行上下文环境的是window  如果上下文环境定义了a, 则使用window里面的那个a变量
+
+  </script>
+</body>
+</html>

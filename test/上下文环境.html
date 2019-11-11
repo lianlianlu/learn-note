@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>上下文环境</title>
+</head>
+<body>
+  <script>
+
+    var a = 10;
+    function fn(){
+      document.writeln('fn:', a);
+    }
+    //fn();
+
+    function bar(f) {
+      var a = 20;
+      f();
+      document.writeln('bar:',a);
+    }
+    bar(fn);
+
+  </script>
+</body>
+</html>
