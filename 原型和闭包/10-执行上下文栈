@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<script type="text/javascript">
+	var a = 10;
+	var fn;
+	var bar = function(x){
+		var b = 5;
+		fn(x + b);
+	}
+	
+	fn = function(y) {
+		var c = 15;
+		console.log(y + c); 
+	}
+
+	bar(20);
+
+	
+</script>
+</body>
+</html>
