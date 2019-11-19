@@ -6,6 +6,7 @@
 </head>
 <body>
 <script>
+<<<<<<< HEAD
  var max = 10;
  var fn = function(x) {
    if (x > max ){
@@ -19,6 +20,23 @@
    f(15);
 
  })(fn)
+=======
+  var a = 10;
+
+  function fn(){
+    var b = 20;
+    function bar(){
+      console.log(a + b); //30
+    }
+    return bar;
+  };
+
+  var x = fn(),
+    b = 200;
+    a = 300;
+
+  x();
+>>>>>>> 47a5ef4abfe98ff292374dba6d72a9accf812bae
 
 </script>
 
