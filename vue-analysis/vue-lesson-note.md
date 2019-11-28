@@ -1,8 +1,9 @@
 ## 第零章 课程大纲
 
+- 老师的课程讲义：https://ustbhuangyi.github.io/vue-analysis/v2/prepare/
 - 内容
 
-<img src="vue源码解析.assets/01.png" style="zoom:75%;" />
+<img src="vue-lesson-note.assets/01.png" style="zoom:75%;" />
 
 - 技术栈
   - vuejs
@@ -193,10 +194,28 @@
   //null
   var foo: ?string = null;
   此时 foo既可以是string，也可以是null;
-  
+  ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+  //排除null
+  var foo?: string;
+  此时 foo既可以是string，也可以是undefined。就是不能为null;
   ```
 
 - 更多的类型，可以去https://flow.org/en/docs/types/看。
+
+- Flow在vue源码中的应用。 在vuejs源码中，flow文件夹下，
+
+  ```js
+  flow
+    |-- compiler.js       # 编译相关
+    |-- component.js      # 组件数据结构
+    |-- global-api.js     # Global API 结构
+    |-- modules.js        # 第三方库定义
+    |-- options.js        # 选项相关
+    |-- ssr.js            # 服务器渲染相关
+    |-- vnode.js          # 虚拟 node 相关
+  ```
+
+  
 
 ---
 
@@ -205,18 +224,52 @@
 ### 第2节 vuejs源码目录设计
 
 ```javascript
--- src
-	-- compiler   #编译相关的文件
-  -- core       #关于方法，组件相关的  重点
-  -- platforms  #里面有两个文件夹 web 平台相关（浏览器） weex 跨端
-  -- server     #服务端
-  -- sfc        #解释器  将.vue文件转换成对象
-  -- shared     #其他文件夹的一些公用方法
+src
+	|-- compiler   # 编译相关的文件
+  |-- core       # 关于方法，组件相关的  重点
+  |-- platforms  # 里面有两个文件夹 web 平台相关（浏览器） weex 跨端
+  |-- server     # 服务端
+  |-- sfc        # 解释器  将.vue文件转换成对象
+  |-- shared     # 其他文件夹的一些公用方法
 ```
 
-- 作者将功能模块拆分的非常清楚，相关逻辑都放在一个独立的目录下，并把复用的代码也抽成一个独立的目录
+#### compiler
 
-  这样设计，提高代码的阅读性和可维护性
+将模板解析成ast语法树  => ast语法树优化 => 代码生成  等功能
+
+编译工作可以在
+
+- 构建时做（借助 webpack, vue-loader等辅助插件）--- `Runtime Only`推荐  
+
+- 运行时做（使用包含构建功能的vuejs）--- `Runtime + Compiler`
+
+#### core
+
+包含vuejs的核心代码。包括`内置组件` 、`全局API封装`、`Vue实例化`、`观察者`、`虚拟DOM`、`工具函数`等
+
+#### plateforms
+
+跨平台
+
+#### server
+
+这部分代码是跑在服务端的 Node.js，不要和跑在浏览器端的 Vue.js 混为一谈。
+
+定义： 服务端渲染主要的工作 => 把组件渲染成服务端的HTML字符串 => 将它们直接发送到浏览器 => 最后将静态标记"混合"，为客户端上的完全交互的应用程序
+
+#### sfc
+
+通常开发，我们借助webpack构建，然后通过.vue来编写组件。这个文件夹的代码逻辑就是将.vue文件内容解析成一个Javascript的对象。
+
+#### shared
+
+前面的文件夹所需的公用方法
+
+#### 小结
+
+作者将功能模块拆分的非常清楚，相关逻辑都放在一个独立的目录下，并把复用的代码也抽成一个独立的目录
+
+这样设计，提高代码的阅读性和可维护性
 
 ---
 
@@ -224,7 +277,7 @@
 
 ### 第3节 vuejs 源码构建
 
-vuejs源码是基于Rollup构建的。Rollup相较于Webpack，只处理js，优点是轻量
+vuejs源码是基于Rollup构建的。Rollup是一个构建工具，不像webpack，对图片等其他资源都处理，它只处理JS，构建出来的产物也更加轻量。所以更加适合library或者application。 相关配置都在scripts目录下。
 
-vue也是发布到npm上的，而每个npm包都是在package.json文件中，对项目做描述
+通常一个基于 NPM 托管的项目都会有一个 package.json 文件，它是对项目的描述文件，它的内容实际上是一个标准的 JSON 对象。
 
