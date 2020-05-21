@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数柯里化</title>
+</head>
+<body>
+<script>
+  function add() {
+    //收集函数所有参数
+    console.log(arguments);
+    let _args = Array.prototype.slice.call(arguments);
+    //定义一个闭包函数，收集所有方法的的参数，并扁平化
+    function _adder(){
+      _args.push(...arguments);
+      return _adder;
+    };
+    _adder.toString = function(){
+      return _args.reduce(function (a,b) {
+        return a + b;
+      })
+    };
+
+    return _adder;
+  }
+
+  let result = add(1,3)(7);
+  console.log(result);
+</script>
+
+</body>
+</html>
