@@ -29,3 +29,6 @@ ng-options="item.id as item.name for item in vm.columnList"
   </select>
 ```
 
+## 字符
+
+>  在字体文件中，每一个字符都对应一个位码，而每一个位码对应一个显示字形，不同的字体就是指字形不同，即字符对应的字形是不同的。而在iconfont中，只是将位码对应的字形做成了图标，所以不同的字符最终就会渲染成不同的图标。

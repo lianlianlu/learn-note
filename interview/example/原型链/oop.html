@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>面对对象</title>
+</head>
+<body>
+<script>
+  /**
+   * 类的声明
+   */
+   function Animal1() {
+     this.name = "animal1";
+  }
+
+  /**
+   * ES6声明
+   */
+  class Animal2 {
+    constructor() {
+      this.name = "anmial2"
+    }
+  }
+
+  console.log(new Animal1(), new Animal2());
+
+
+  /**
+   * 继承   原理就是原型链
+   * 继承的集中方法
+   */
+
+  /**
+   * 借助 构造函数 实现继承
+   */
+  function Parent1() {
+    this.name = 'parent1';
+    this.say = function(){
+      console.log('父say方法');
+    }
+  }
+  function Child1() {
+    this.type = 'child1';
+    //继承父亲
+    Parent1.call(this);
+  }
+
+  var o_child1 = new Child1();
+  o_child1.say();
+
+</script>
+
+</body>
+</html>

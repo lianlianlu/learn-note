@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>两栏布局-左边固定-右边自适应</title>
+  <style>
+    html,* {
+      padding: 0;
+      margin: 0;
+    }
+    .layout {
+      margin-bottom: 20px;
+    }
+    .layout article div {
+      min-height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <section class="layout flexbox">
+    <style>
+      .layout.flexbox .left-right {
+        display: flex;
+      }
+      .layout.flexbox .left {
+        width: 300px;
+        background: red;
+      }
+      .layout.flexbox .right {
+        flex: 1;
+        background: blue;
+      }
+    </style>
+    <article class="left-right">
+      <div class="left">
+        <h3>flexbox</h3>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+  <section class="layout float">
+    <style>
+      .layout.float .left {
+        float: left;
+        width: 300px;
+        background: red;
+      }
+      .layout.float .right {
+        background: blue;
+      }
+    </style>
+    <article class="left-right">
+      <div class="left">
+        <h3>float</h3>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+  <section class="layout inlineBlock">
+    <style>
+      .layout.inlineBlock .left-right {
+        font-size: 0; /*消除div之间的浏览器间隔*/
+      }
+      .layout.inlineBlock .left {
+        display: inline-block;
+        width: 300px;
+        background: red;
+        font-size: 12px;
+        color: #fff;
+      }
+      .layout.inlineBlock .right {
+        display: inline-block;
+        width: -moz-calc(100% - 300px);/*兼容浏览器 必写*/
+        width: -webkit-calc(100% - 300px);
+        width: calc(100% - 300px);
+        background: blue;
+      }
+    </style>
+    <article class="left-right">
+      <div class="left">
+        <h3>inlineBlock</h3>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+  <section class="layout position">
+    <style>
+      .layout.position .left {
+        position: absolute;
+        left:0;
+        width: 300px;
+        background: red;
+      }
+      .layout.position .right {
+        position: absolute;
+        left:300px;
+        width: 100%;
+        background: blue;
+      }
+    </style>
+    <article class="left-right">
+      <div class="left">
+        <h3>position</h3>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+  <section class="layout grid">
+    <style>
+      .layout.grid {
+        margin-top: 140px;
+      }
+      .layout.grid .left-right {
+        display: grid;
+        grid-template-rows: 100%;
+        grid-template-columns: 300px auto;
+      }
+      .layout.grid .left {
+        background: red;
+      }
+      .layout.grid .right {
+        background: blue;
+      }
+    </style>
+    <article class="left-right">
+      <div class="left">
+        <h3>grid</h3>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+</body>
+</html>

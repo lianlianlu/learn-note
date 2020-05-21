@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="list-wrapper">
+  <ul id="J_List">
+    <li><span class="user-delete">××</span>10</li>
+    <li>11</li>
+    <li><span class="user-delete">××</span>12</li>
+    <li>13</li>
+    <li><span class="user-delete">××</span>14</li>
+    <li>15</li>
+    <li><span class="user-delete">××</span>16</li>
+    <li>17</li>
+    <li>18</li>
+    <li>19</li>
+  </ul>
+</div>
+
+
+<script>
+  // 此处也可换成ES6的写法
+  function Contact() {
+    this.init();
+  }
+  // your code here
+  Contact.prototype.init = function () {
+    //获取ul
+    let oul = document.querySelector('#J_List');
+
+    //给body添加事件委托 事件委托必须给添加所操作元素的父元素
+    document.body.addEventListener('click',function(e){
+      //兼容性处理
+      var e = e || window.event;
+      // 检查事件源e.targe是否为user-delete
+      if (e.target.className || e.srcElement.className == "user-delete") {
+        var obj = e.target || e.srcElement;
+        //获取父元素li
+        var parent = obj.parentElement;
+
+        //删除li
+        oul.removeChild(parent)
+      }
+    });
+
+  };
+  new Contact();
+</script>
+
+</body>
+</html>

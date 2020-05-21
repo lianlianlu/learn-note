@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <style>
+  html, * {
+    margin: 0;
+    padding:0;
+  }
+  .wrapper {
+    margin-bottom: 20px;
+  }
+  .wrapper div {
+    min-height: 200px;
+  }
+</style>
+</head>
+<body>
+  <section class="wrapper float">
+    <style>
+      .wrapper.float .left {
+        width: 300px;
+        background: red;
+        float:left;
+      }
+       .wrapper.float .right {
+        width: 300px;
+        background: blue;
+        float:right;
+      }
+       .wrapper.float .center {
+        background: yellow;
+      }
+    </style>
+    <article class="left-right-center">
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="center">
+        中间自适应，我用点文字撑起这个div
+      </div>
+
+    </article>
+  </section>
+
+  <section class="wrapper position">
+    <style>
+      .wrapper.position .left-center-right> div {
+        position: absolute;
+      }
+      .wrapper.position .left {
+        width: 300px;
+        background: red;
+        left:0;
+      }
+       .wrapper.position .center {
+        left: 300px;
+        right:300px;
+        background: yellow;
+      }
+       .wrapper.position .right {
+        width: 300px;
+        background: blue;
+        right:0;
+      }
+    </style>
+    <article class="left-center-right">
+      <div class="left"></div>
+      <div class="center">
+       <h2>使用position:absolute来实现该功能</h2>
+      </div>
+      <div class="right"></div>
+    </article>
+  </section>
+
+
+</body>
+</html>

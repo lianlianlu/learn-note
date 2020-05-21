@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>005</title>
+</head>
+<body>
+  <script>
+    function ex16hex(str) {
+      let value = str.replace('0x', '');
+      let arr = value.split('');
+      arr = arr.reverse();
+      let len = arr.length;
+      let res = 0;
+      arr.forEach(item => {
+        let num = hex_change(item);
+        res += muli16(num, item);
+      });
+
+      return res;
+    }
+
+    function hex_change(item) {
+      let res = 0;
+      console.log(item);
+      switch(item) {
+        case 'a': res = 10; break;
+        case 'A': res = 10; break;
+        case 'b': res = 11; break;
+        case 'B': res = 11; break;
+        case 'c': res = 12; break;
+        case 'C': res = 12; break;
+        case 'd': res = 13; break;
+        case 'D': res = 13; break;
+        case 'e': res = 14; break;
+        case 'E': res = 14; break;
+        case 'f': res = 15; break;
+        case 'F': res = 15; break;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9': res = Number(item); break;
+        default: res = 0;break;
+      }
+      return res;
+    }
+
+    function muli16(v, n) {
+      let temp = v;
+      for (let i = 0; i < n ; i ++ ) {
+        temp *= 16;
+      }
+      return temp;
+    }
+
+    console.log(ex16hex('0x76E'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>defineProperty</title>
+</head>
+<body>
+  <script>
+   // Object.defineProperty(obj, key, descriptor)
+    var obj1 = {};
+    var descriptor = Object.create(null);   // 隔断继承属性。
+    //默认是没有 enumberable, configurable, writable
+   descriptor.value = 'static';
+   Object.defineProperty(obj1, 'key', descriptor);   //不可循环
+   // for(let i in obj1){
+   //   console.log(i); //undefined
+   // }
+  </script>
+  <script>
+    //显示
+    let obj2 = {};
+    Object.defineProperty(obj2, 'key', {
+      enumerable: true,  //可循环列
+      configurable: false,
+      writable: false,
+      value:'obj2Keyvalue'
+    });
+    Object.defineProperty(obj2, 'key2', {
+      enumerable: true,  //可循环列
+      configurable: false,
+      writable: false,
+      value:'obj2Key2value'
+    });
+
+    for(let i in obj2){
+      console.log(i); //undefined
+    }
+  </script>
+
+<script>
+  //二者合其一
+  //公用 配置 enumberable, configurable,
+  // 有writeable, value 就不可以用getter 和setter
+  //循环使用同一个对象
+  function withValue(value){
+    let d = withValue.d || (
+      withValue.d = {
+        enumerable: true,  //可循环列
+        configurable: false,
+        writable: false,
+        value: null
+      }
+    )
+    d.value = value;
+    return d;
+  }
+
+  let obj3 = {};
+  Object.defineProperty(obj3, 'key3', withValue('static3'));
+  Object.defineProperty(obj3, 'key4', withValue('static4'));
+  Object.defineProperty(obj3, 'key5', withValue('static5'));
+  console.log(obj3);
+  console.log(Object.keys(obj3))  //["key3", "key4", "key5"]
+
+</script>
+</body>
+</html>

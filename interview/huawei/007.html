@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>取近似值</title>
+</head>
+<body>
+写出一个程序，接受一个正浮点数值，输出该数值的近似整数值。如果小数点后数值大于等于5,向上取整；小于5，则向下取整。
+
+
+
+输入一个int型整数，按照从右向左的阅读顺序，返回一个不含重复数字的新的整数。
+<script>
+  /**
+  function getNumber(number){
+    let right_value = number.toString().split('.')[1];
+    if (Number(right_value) >= 5) {
+      return Math.ceil(number);
+    } else {
+      return Math.floor(number);
+    }
+  }
+
+  document.write(Math.round(5.9));
+
+
+  //---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---
+  let int_number = 9876673;
+  let res = "";
+  for(let i =int_number.length-1; i >=0; i--){
+    if (res.indexOf(int_number[i]) === -1) {
+      res += int_number[i]+'';
+    }
+  }
+
+  //---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---
+
+  let str = 'uqic^g`(s&jnl(m#vt!onwdj(ru+os&wx';
+  let str_arr = str.split('');
+  let res_arr = [];
+  str_arr.forEach(item => {
+    if (item.charCodeAt() < 127 && item.charCodeAt() > 0 && !res_arr.includes(item)) {  //不同字符
+      res_arr.push(item);
+    }
+  })
+
+ // console.log(res_arr.length);
+
+
+
+  //---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---
+//  let param = 'abcd';
+ // let param_arr = param.split('').reverse();
+ // console.log(param_arr.join(''));
+
+  //---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---
+  let param = 'I am a boy';
+ // let param_arr = param.split(' ').reverse();
+  //console.log(param_arr.join(' '));
+
+
+  let param_arr = param.split(' ');
+  let result = '';
+  for(i = param_arr.length-1; i >= 0; i --){
+    result += param_arr[i] + ' ';
+  }
+  console.log(result);
+
+
+
+  let n = 3;
+  let arr = ['cap','boot','boat'];
+  let res_arr = [];
+  // while(n--){
+  //
+  // }
+  arr.sort();
+  arr.forEach(item => {
+    console.log(item);
+  });
+
+
+  let param = 5;
+  let get_number = num.toString(2);
+  console.log(get_number);
+  let count = 0;
+  for(let i = 0; i <= get_number.length; i++){
+    if (get_number[i] !== undefined && get_number[i] == '1') {
+      count += 1;
+    }
+  }
+  console.log(count);
+
+
+
+  var arr=readline().split(' ').map(val=>parseInt(val));
+  var c=arr[0]/10,
+    k=arr[1];
+  var goods=[],
+    count=1;
+  while(count<=k){
+    var item=readline().split(' ').map(val=>parseInt(val));
+    if(item[2]===0){
+      goods[count]=[{v:item[0]/10,w:item[0]/10*item[1]}];
+    }else{
+      var add=goods[item[2]].map(val=>{
+        return {
+          v:item[0]/10+val.v,
+          w:item[0]/10*item[1]+val.w
+        }
+      });
+      goods[item[2]]=[...goods[item[2]],...add];
+    }
+    count++;
+  }
+  console.log(choose(goods));
+  //console.log(goods[1][2].v);
+
+  function choose(goods){
+    var res=Array(c+1).fill(0);
+    for(var i=1;i<goods.length;i++){
+      for(var j=c;j>=0;j--){
+        if(goods[i]){
+          goods[i].forEach(val=>{
+            if(val.v<=j){
+              res[j]=Math.max(res[j],res[j-val.v]+val.w);
+            }
+          })
+        }
+      }
+    }
+    return res[c]*10;
+  }
+
+
+  let str = "W49;W92;A84;W33;A32;A52;D97;";
+  let arr = str.split(';');
+  let x = 0;
+  let y = 0;
+  arr.forEach(item => {
+    let number = item.slice(1);
+    if (!isNaN(number) && number !== '') {
+      let step_position = item[0];
+     switch(step_position){
+       case 'A':
+         x -= parseInt(number);
+         break;
+       case 'D':
+         x += parseInt(number);
+         break;
+       case 'W':
+         y += parseInt(number);
+         break;
+       case 'S':
+         y -= parseInt(number);
+         break;
+       default: {};
+     }
+    }
+
+  })
+  console.log(x + ',' + y);
+
+
+
+  let inputArr = ['E:\\V1R2\\product\\fpgadrive.c 1325', 'E:\\V1R2\\product\\bb.c 1453'];
+  //文件名 行数 数量
+
+
+  var count = 0;
+  var sum = 0;
+  var input = '18259 3386 -3490 64453 -1571 57543 12151 2186 -17851 56212 42919 48020 -409 13979 49103 -4985 28018 -13005 21866 48272 17400 76308 49960 22177 -19074 40860 35215 -1608 69665 70068 1127 16417 42894 36660 66927 24406 -8651 34582 57412 -5440 -2059 26052 11727 68881 30676 19227 -13007 67727 13582 72918 66762 -15575 25595 -8260 68470 75520 10708';
+  let inputArr = input.split(' ');
+  inputArr.forEach(item => {
+    if (Number(item) < 0) {
+      console.log(item);
+      count ++;
+    } else {
+      sum += Number(item);
+    }
+  });
+  let input_len = inputArr.length;
+  //平均数
+  let len = Number(input_len)-Number(count);
+  console.log(count);
+  console.log((sum/len).toFixed(1));
+
+
+
+  let str = 'I am a student';
+  let reverseArr = str.split(' ').reverse();
+  let resArr = [];
+  reverseArr.forEach(item => {
+    let reveseItem = item.split('').reverse();
+    resArr.push(reveseItem.join(''));
+  });
+  console.log(resArr);
+  console.log(resArr.join(' '));
+
+
+  let inputStr = '4 2 4 25 6';
+  var strArr = inputStr.split(' ');
+  var arr = [];
+  for (let i = 0; i < strArr.length; i ++) {  //先把输入的值转换成数组, 并把子项的字符串格式转换成数字格式
+    arr.push(parseInt(strArr[i]));
+  }
+
+  var maxTep = [1];
+  for(let i = 1; i < arr.length; i ++) {
+    let res = 1;    //从第i个开始往后，最长上升序列长度
+    for(let j = 0; j < i; j ++) {   //第j个数结尾
+      if(arr[j] > arr[i]) {
+        res = Math.max(maxTep[j]+1, res);
+        //console.log(res);
+      }
+    }
+    maxTep.push(res);
+  }
+
+  console.log(maxTep);
+
+
+  //取数组中最大值
+  function choseMax(arr) {
+    let init_max = arr[0];
+    for (let i = 0; i < arr.length; i ++) {
+      if (arr[i] > init_max) {
+        init_max = arr[i];
+      }
+    }
+    return init_max;
+  }
+
+  let input_str = "aadddccddc";
+  let obj = {};
+  for(let i = 0; i < input_str.length; i ++ ) {
+    let ch = input_str[i];
+    if (ch in obj) {
+      obj[ch] += 1;
+    } else {
+      obj[ch] = 0;
+    }
+  }
+  let keyArr = Object.keys(obj);
+  keyArr.sort((a,b) =>{
+    if (obj[b] === obj[a]) {
+      if (a < b) {
+        return -1;
+      }
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    }
+
+    return obj[b]-obj[a];
+  });
+
+  console.log(keyArr.join(''));
+
+
+
+
+  let str = "83109 31612 10525 45268 43543 52324 44709 2125 498 50264 5503 59642 10746 65466 89936 28950 59822 87282 33859 48657 " +
+    "83789 35164 49458 47926 45153 46582 87617 66584 22042 16409 82063 83493 79522 79961 85546 72007 31440 21415 85369 41634 " +
+    "32955 74830 62489 46227 61025 43565 44074 66734 48631 14861 59705 32598 92235 71703 36064 581 72414 69805 66138 81570 61878 " +
+    "87442 20209 90587 41684 14576 15527 67951 75128 20586 63441 77430 38598 55381 79075 62613 89655 57093 6530 41884 7483 43702 " +
+    "95732 69066 45680 93401 27352 89604 4776 43686 7570 3736 72264 39648 76033 59936 61573 80710 51389 28235 35719 58407 1815 66436 " +
+    "90411 73087 39099 27644 52952 26058 30037 82551 56828 87021 92646 87205 11300 12767 39534 63675 29933 30093 90672 71326 69609 " +
+    "51000 61739 70430 20665 54864 44328 12309 30832 95049 32546 25177 14867 65443 94713 80655 32014 89794 34465 64250 21401 60811 " +
+    "34048 18769 1398 62275 33993 11267 61309 77366 23677 60007 70623 49871 87950 55606 13615 31207 26778 90564 86418 46873 1687 " +
+    "90555 91852 11389 35603 22516 56479 95964 52468 88573 45972 70446 66104 33830 62560 13041 62417 45744 35821 59790 43766 81190 " +
+    "51782 91050 7479 64741 47039 26303 63028 70348 14203 26299 10908 91674 68435 83451 5948 40894 79301 9030 49244 41856 20295 " +
+    "1676 84263 46330 5530 47540 34508 32571 58654 54316 2552 96026 52339 51274 10230 33616 68120 80892 33024 27114 56792 37367 " +
+    "95748 14398 25837 28541 21255 46995 5614 29128 62156 50529 28759 79510 11424 1237 51308 33901 58595 37377 65372 59598 86749 " +
+    "5315 13812 39277 50236 65399 7410 6885 44625 9062 92947 83656 84422 38151 55648 50234 85756 24546 46410 80837 22821 36344 78071 " +
+    "33286 41520 84397 6791 37270 33276 71498 88595 59845 41495 55235 17946 39016 45638 78914 89187 9202 19677 38187 26913 74920 64307 " +
+    "64942 2539 95226 515 14528 2317 59771 47753 86403 78448 94868 15969 43905 72673 53780 93113 86012 15988 18914 43085 76102 66571 " +
+    "16579 85098 62506 91669 88862 8401 22096 13008 19545 78382 47735 14495 23959 5777 29884 57258 32449 50485 86645 23177 18206 66967 89963"
+  let arr = str.split(' ');
+  let sort_flag = 1;
+  if (sort_flag == 0) {
+    arr.sort((a, b) => {
+      return a-b;  //升序
+    })
+    console.log(arr.join(' '));
+  } else {
+    arr.sort((a, b) => {
+      return b-a;  //降序
+    })
+    console.log(arr.join(' '));
+  }
+
+
+
+  while(line=readline()){
+    var arr=readline().trim().split(' ')
+    var flag=readline();
+    if(flag==0){
+      arr.sort(function(a,b){
+        return a-b;
+      })
+      console.log(arr.join(" "))
+    }else{
+      arr.sort(function(a,b){
+        return b-a;
+      })
+      console.log(arr.join(" "))
+    }
+  }
+
+  while(total_num = readline()) {
+    let arr = readline().split(' ');
+    let sort_flag = readline();
+    if (sort_flag == 0) {
+      arr.sort(function(a, b){
+        return a-b;  //升序
+      })
+      console.log(arr.join(' '));
+    } else {
+      arr.sort(function(a, b){
+        return b-a;  //降序
+      })
+      console.log(arr.join(' '));
+    }
+
+  }
+
+  let str = '$bo*y gi!r#l #';
+  let res_str = str.replace(/[^a-zA-Z\s]/g, ' ');
+  console.log(res_str);
+
+
+  while(line=readline()){
+    var res='';
+    var obj={};
+    for(var i=0;i<line.length;i++){
+      if(obj[line[i]]){
+        obj[line[i]]++;
+      }else{
+        obj[line[i]]=1;
+      }
+    }
+    var min=20;
+    for(var key in obj){
+      if(obj[key]<min){
+        min=obj[key];
+      }
+    }
+    for(var i=0;i<line.length;i++){
+      if(obj[line[i]]!=min){
+        res+=line[i];
+      }
+    }
+    console.log(res);
+  }
+
+   **/
+  let input_str = 'A Famous Saying: Much Ado About Nothing (2012/8).';
+  run(input_str);
+  function run(str){
+    var arr = str.split('')
+   // console.log(arr);
+    var obj = {}
+    //对当前所有字母进行排序
+    arr.forEach((el, i) => {
+      var res = el.toLowerCase()
+      if(res > 'z' || res < 'a'){
+        return
+      }
+
+      if(!obj[res]){
+        obj[res] = [el]
+      }else{
+        obj[res].push(el)
+      }
+      arr[i] = undefined
+    })
+    //console.log(obj);
+    var letters = []
+    Object.keys(obj).sort().forEach((el, i) => {
+      letters = letters.concat(obj[el])
+    })
+    arr.forEach((el, i) => {
+      if(el){
+        return
+      }else{
+        arr[i] = letters.shift()  //将数组的第一元素删除，并返回第一个元素
+      }
+    })
+    //console.log(arr.join(''))
+  }
+
+</script>
+
+</body>
+</html>

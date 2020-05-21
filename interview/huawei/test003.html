@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>003</title>
+</head>
+<body>
+去重和排序
+<script>
+  while(n=parseInt(readline())){
+    var arr=[];
+    while(n--){
+      var value= parseInt(readline())
+      arr[value]=1;
+    }
+    arr.forEach((el,index)=>{if(el===1){console.log(index)}})
+  }
+
+
+
+  let test_param1 = readline();
+  let test_param2 = readline();
+  while(test_param1.length > 8){
+    console.log(test_param1.substr(0,8));
+    test_param1 = test_param1.substr(8);
+  }
+  while(test_param1.length >0) {
+    console.log((`${test_param1}00000000`).substr(0,8));
+  }
+  while(test_param2.length > 8){
+    console.log(test_param2.substr(0,8));
+    test_param1 = test_param2.substr(8);
+  }
+  while(test_param2.length >0) {
+    console.log((`${test_param2}00000000`).substr(0,8));
+  }
+
+</script>
+</body>
+</html>

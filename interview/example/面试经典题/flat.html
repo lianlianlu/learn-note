@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>软算法</title>
+</head>
+<body>
+<div>
+  <p>输入： <code>['a',['b','c',['qq','mm',8]], 2, ['d','e','f'], 'g',3, 4]</code></p>
+  <p>输出： <code>'a','b','c', 2,'d','e','f', 'g',3, 4</code></p>
+</div>
+
+<script>
+  /**
+   //方法一 递归
+   function flat(array){
+    let result = [];
+    var each = function(arr){
+      arr.forEach(item => {
+        if (item instanceof Array) {
+          each(item);
+        } else {
+          result.push(item);
+        }
+      });
+    }
+    each(array);
+    return result;
+  }
+
+   var arr = ['a',['b','c',['qq','mm',8]], 2, ['d','e','f'], 'g',3, 4];
+   let res = flat(arr);
+   console.log(res);
+
+
+   //方法二 隐式转换
+   var arr = ['a',['b','c',['qq','mm',8]], 2, ['d','e','f'], 'g',3, 4];
+   //小方法：console.log(arr.toString());
+   或者：
+   //保存Array上的toString方法
+   let toString = Array.prototype.toString();
+   //修改原有toString 的方法
+   Array.prototype.toString = function () {
+      return this.join(',');
+    }
+   //保存结果
+   let res = arr + '';
+   console.log(res);
+   //恢复原来的原型链
+   Array.prototype.toString = toString;
+
+
+
+   //方法三  隐式转换 valueOf
+   var arr = ['a',['b','c',['qq','mm',8]], 2, ['d','e','f'], 'g',3, 4];
+   //保存valueOf
+   let valueOf = Array.prototype.valueOf();
+   Array.prototype.valueOf = function(){
+    return this.join(',');
+  }
+   //保存结果
+   let res = arr + '';
+   console.log(res);
+   Array.prototype.valueOf = valueOf;
+
+
+   //使用ES6遍历器
+
+   Array.prototype[Symbol.interator]= function(){
+        let arr = [].concat(this);
+        let getFirst = function(arr){
+          let first = arr.shift();
+          return first;
+        }
+
+        return {
+          next() {
+            let item = getFirst(arr);
+            if (item){
+              return{
+                value: item,  //有一个隐式转换 ['qq','bb',8].toString() 在里面
+                done: false
+              }
+            } else {
+              return {
+                done: true
+              }
+            }
+          }
+        }
+      }
+
+
+   //做一个flat函数
+   function flat(arr){
+    let r = [];
+    for(let i of arr) {
+      r.push(i);
+    }
+    return r.join(',');
+  }
+   var arr = ['a',['b','c',['qq','bb',8]], 2, ['d','e','f'], 'g',3, 4];
+   console.log(flat(arr));
+
+
+   var arr = ['a',['b','c',['faf','bb',8]], 2, ['d','e','f'], 'g',3, 4];
+   let it  = arr[Symbol.iterator]();
+   let res = [];
+   for(let i of arr){
+    res.push(it.next().value);
+  }
+   console.log(res.join(','));
+
+
+
+
+   var obj = {
+    a: 'aa',
+    b: 'bb',
+    c: 'cc',
+    length: 3,
+    [Symbol.iterator]: Array.prototype[Symbol.iterator]
+  }
+   for (let value of obj) {
+    console.log(value);
+  }
+
+
+   //解构赋值
+   let set = new Set().add('a').add('b').add('c').add('d');
+   console.log(set);
+
+   let [x,y] = set;
+   console.log([x,y] );
+
+   let [first, ...rest] = set;
+   console.log([first, ...rest]);
+
+   //扩展运算符
+   var str = "string";
+   let str_arr = [...str];
+   console.log(str_arr);
+
+   var arr_1 = ['a', 'b','c',['d','e','f',['g','h']]]
+   console.log([1, ...arr_1, 3]);
+
+    //对象
+  let obj = {
+      a: 'aa',
+      b: 'bb'
+    }
+  for (let key in obj) {
+    console.log(key);
+    console.log(obj[key]);
+  }
+
+  var arr = ['a',['b','c',['qq','bb',8]], 2, ['d','e','f'], 'g',3, 4];
+  let it = arr[Symbol.iterator]();
+  let res = [];
+  for (let i of arr) {
+    console.log(it.next().value);
+  }
+  console.log(res.join(','));
+
+
+  let obj = {
+    a: 'aa',
+    b: 'bb',
+    [Symbol.iterator]: function(){
+      return {
+        next(){
+          return {
+            value:
+          }
+        }
+      }
+    }
+  }
+  for (let key of obj) {
+    console.log(key);
+  }
+
+
+  //SET MAP结构  // 可以去重
+  var engines = new Set(["Gecko", "Trident", "Webkit", "Webkit"]);
+  for (var e of engines) {
+    console.log(e);
+  }
+
+   **/
+  let arr = ["Gecko", "Trident", "Webkit", "Webkit"];
+  for (var n of arr) {
+    if (n > 'Trident')
+      break;
+    console.log(n);
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>002</title>
+</head>
+<body>
+<script>
+ let test_str1 = 'ABCDEF';
+ let test_str2 = 'A';
+ let count= 0;
+ for(let i = 0; i < test_str1.length; i ++) {
+   console.log(test_str1[i]);
+   if (test_str1[i] === test_str2) {
+     console.log(i);
+     count++;
+   }
+ }
+ console.log(count);
+</script>
+</body>
+</html>

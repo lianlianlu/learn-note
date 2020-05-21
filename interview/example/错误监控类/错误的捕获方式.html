@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>错误监控</title>
+  <script type="text/javascript">
+    window.addEventListener('error', function(e){console.log(e);}, true); //true 是捕获， false 是冒泡
+  </script>
+</head>
+<body>
+  <script src="https://www.baidu.com/testaa.js"></script>
+  <script src="https://www.baidu.com/testbb.js"></script>
+</body>
+</html>
